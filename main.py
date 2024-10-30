@@ -1,5 +1,6 @@
 # imports
 from pyspark import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType, DoubleType, DateType
 from config.config import configuration
 
 # Check if the script is being run directly (not imported as a module).
@@ -23,3 +24,29 @@ if __name__ == "__main__":
                      'org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider')
              .getOrCreate()
              )
+
+csv_input_dir = 'file:///home/v11s3rkr/repos/aws_spark/input/input_csv'
+img_input_dir = 'file///home/v11s3rkr/repos/aws_spark/input/input_img'
+json_input_dir = 'file///home/v11s3rkr/repos/aws_spark/input/input_json'
+pdf_input_dir = 'file///home/v11s3rkr/repos/aws_spark/input/input_pdf'
+video_input_dir = 'file///home/v11s3rkr/repos/aws_spark/input/input_video'
+text_input_dir = 'file///home/v11s3rkr/repos/aws_spark/input/inut_text'
+
+data_schema = StructType([
+    StructField(name: 'file_name', StringType(), nullable: True),
+    StructField(name: 'position', StringType(), nullable: True),
+    StructField(name: 'classcode', StringType(), nullable: True),
+    StructField(name: 'salary_start', DoubleType(), nullable: True),
+    StructField(name: 'salary_end', DoubleType(), nullable: True),
+    StructField(name: 'start_date', DateType(), nullable: True),
+    StructField(name: 'end_date', DateType(), nullable: True),
+    StructField(name: 'req', StringType(), nullable: True),
+    StructField(name: 'notes', StringType(), nullable: True),
+    StructField(name: 'duties', StringType(), nullable: True),
+    StructField(name: 'selection', StringType(), nullable: True),
+    StructField(name: 'experience_length', StringType(), nullable: True),
+    StructField(name: 'job_type', StringType(), nullable: True),
+    StructField(name: 'education_length', StringType(), nullable: True),
+    StructField(name: 'school_type', StringType(), nullable: True),
+    StructField(name: 'application_location', StringType(), nullable: True)
+])
